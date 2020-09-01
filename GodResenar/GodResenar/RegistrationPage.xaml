@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GodResenar.RegistrationPage"
+             Visual="Material"
+                          BackgroundColor="#F4D242"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="Registrera" Grid.Row="0"/>
+            <StackLayout Grid.Row="1">
+                <Entry Text="{Binding Username}"
+                       Placeholder="Användarnamn" 
+                       Keyboard="Default"/>
+                <Entry Text="{Binding Email}"
+                       Placeholder="E-post" 
+                       Keyboard="Email"/>
+                <Entry Text="{Binding Phone}"
+                       Placeholder="Mobilnummer (+46XXXXXXXXX)" 
+                       Keyboard="Telephone"/>
+                <Entry Text="{Binding Password}"
+                       Placeholder="Lösenord"
+                       IsPassword="True" />
+                <Entry Text="{Binding Age}"
+                       Placeholder="Ålder"
+                        Keyboard="Numeric"/>
+                <Label Text="E-posten eller telefonnumer är redan registrerade!" 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       TextColor="Red" />
+            </StackLayout>
+            <Button x:Name="RegisterButton" Grid.Row="2" BackgroundColor="#00471f"  Text="Logga in" Clicked="RegisterButton_Clicked" />
+            <Button x:Name="GoToLogInButton"  Grid.Row="3" BackgroundColor="#00471f" Text="Inte medlem? Registrera!" Clicked="GoToLogInButton_Clicked" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

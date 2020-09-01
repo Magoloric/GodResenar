@@ -1,0 +1,62 @@
+﻿ [
+    {
+      "Number": "1",
+      "UserName": "Svennis",
+      "Category": "BusStopIssue",
+      "Title": "Trasig Busskur",
+      "TextMessage": "Någon har krossat glaset på busshållsplatsen",
+      "Location": "Torsby Kommun",
+      "PhotoSource": "",
+      "VideoSource": "",
+      "VoiceMessageSource": "",
+      "Votes": "51",
+      "Status": "Pending"
+    },
+    {
+      "Number": "2",
+      "UserName": "Radona",
+      "Category": "Overcrowding",
+      "Title": "Fullsatt på morgonturen linje 300",
+      "TextMessage": "För mycket folk på bussen mellan Hagfors och Karlstad på morgonen",
+      "Location": "Karlstad Kommun",
+      "PhotoSource": "",
+      "VideoSource": "",
+      "VoiceMessageSource": "",
+      "Votes": "34",
+      "Status": "Pending"
+    },
+  {
+    "Number": "3",
+    "UserName": "Lovegren3006",
+    "Category": "BusStopIssue",
+    "Title": "Bygg om Stömne Bytespunkt",
+    "TextMessage": "Obekvämt och ibland även farligt att byta buss i Stömne - bygg ett plattform eller liknande så folk får det enklare och säkrare att byta!",
+    "Location": "Arvika Kommun",
+    "PhotoSource": "",
+    "VideoSource": "",
+    "VoiceMessageSource": "",
+    "Votes": "89",
+    "Status": "Pending"
+  },
+  {
+    "Number": "4",
+    "UserName": "OskarOrbi",
+    "Category": "Suggestion",
+    "Title": "Inför munskyddskrav för resande vid vissa turer",
+    "TextMessage": "Bussarna blir fullsatta vid rusningstimmar och snart börjar skolan också! Det blir svårt att hålla avstånd och ingen tänker sätta in extra turer, så inför åtminstone munskyddskrav på vissa turer! ",
+    "Location": "Karlstad Kommun",
+    "PhotoSource": "",
+    "VideoSource": "",
+    "VoiceMessageSource": "",
+    "Votes": "198",
+    "Status": "Rejected"
+  },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+

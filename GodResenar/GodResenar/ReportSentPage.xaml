@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GodResenar.ReportSentPage"
+                          Visual="Material"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F4D242">
+    <ContentPage.Content>
+        <Grid VerticalOptions="CenterAndExpand" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label TextColor="#00471f"  FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0133;" FontSize="172" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0"></Label>
+            <Label FontAttributes="Bold" TextColor="Black" Text="Tack för ditt bidrag!" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="32"/>
+            <Label TextColor="Black" Text="Vi behandlar ärendet så snart vi kan!" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20"/>
+            <Button  x:Name="OkButton" Margin="20" CornerRadius="30" FontSize="27"  Padding="40, 10, 40, 10" Grid.Row="3"  BackgroundColor="#00471f" Text="OK!" Clicked="OkButton_Clicked" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

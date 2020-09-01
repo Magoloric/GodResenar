@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GodResenar.ShopPage"
+             Title="">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="3">
+            <Image Source="ic_info_grey_700_48dp.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Poängshoppen är inte tillgänglig ännu, men vi jobbar på det!"
+                   TextColor="DarkSlateGray" FontAttributes="Bold" FontSize="25" HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GodResenar.IntroPage"
+             xmlns:ob="clr-namespace:GodResenar.Functions"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Visual="Material"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F4D242">
+    <ContentPage.BindingContext>
+        <ob:OnboardingHandler />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <CarouselView x:Name="onBoardingCarousel"
+                          ItemsSource="{Binding Items}"                          
+                          VerticalOptions="Center"
+                          Position="{Binding Position}"
+                          IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="ob:Onboarding">
+                        <ContentView>
+                            <FlexLayout Direction="Column"
+                                        Padding="20"
+                                    JustifyContent="SpaceEvenly">
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       FontSize="Title" 
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="EndAndExpand"/>
+                                <!--    <ffimageloadingsvg:SvgCachedImage                                           
+                                                            Source="{Binding ImageUrl}"                                                                                                                                                                                                              
+                                       Aspect="AspectFill"
+                                       WidthRequest="300" 
+                                       FlexLayout.AlignSelf="Center"/> -->
+                                <Label Text="{Binding Content}"
+                                       FontSize="Body"
+                                       HorizontalTextAlignment="Center"/>
+                            </FlexLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <FlexLayout JustifyContent="SpaceEvenly">
+                <IndicatorView x:Name="indicatorView"
+                           Padding="16"
+                           FlexLayout.Grow="1"
+                    IndicatorsShape="Circle"
+                    IndicatorColor="#00471f"
+                    SelectedIndicatorColor="White"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Center"/>
+                <Button
+                    HorizontalOptions="EndAndExpand"
+                    Margin="20"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    BackgroundColor="#00471f"
+                    Text="{Binding SkipButtonText}"
+                    Clicked="SkipButton_Clicked"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
