@@ -7,13 +7,13 @@ namespace GodResenar
 {
     public partial class App : Xamarin.Forms.Application, INotifyPropertyChanged
     {
-        
+
         public static INavigation GlobalNavigation { get; private set; }
 
         public static object UIParent { get; set; } = null;
         // UIParent used by Android version of the app
         public static object AuthUIParent = null;
-        
+
 
 
 
