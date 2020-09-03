@@ -20,10 +20,12 @@
 
   <ItemGroup>
     <None Remove="Resources\sampleBase.json" />
+    <None Remove="Resources\sampleShop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\sampleBase.json" />
+    <EmbeddedResource Include="Resources\sampleShop.json" />
   </ItemGroup>
 
   <ItemGroup>

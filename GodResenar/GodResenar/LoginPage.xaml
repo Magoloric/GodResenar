@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,18 +9,22 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#F4D242">
     <ContentPage.Content>
-        <Grid VerticalOptions="CenterAndExpand" Margin="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label FontAttributes="Bold" TextColor="Black" Text="Välkommen! Tryck nedan för att gå till inloggningstjänsten!" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
-            <Button  x:Name="LoginButton" Margin="20" CornerRadius="30" FontSize="25" FontAttributes="Bold" Padding="40, 10, 40, 10" Grid.Row="2"  BackgroundColor="#00471f" Text="Logga in" TextColor="White"  Clicked="LoginButton_Clicked" />
-            <Button  x:Name="GoogleButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold"  Padding="40, 10, 40, 10" Grid.Row="3"  BackgroundColor="LightGray" Text="Logga in med Google" TextColor="Gray"  Clicked="LoginButton_Clicked" />
-            <Button  x:Name="AppleButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="40, 10, 40, 10" Grid.Row="4"  BackgroundColor="Black" Text="Logga in med Apple" TextColor="White"  Clicked="LoginButton_Clicked" />
-        </Grid>
-  </ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="30">
+            <Label FontAttributes="Bold" TextColor="Black" Text="Välkommen! Vänligen logga in:" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <Frame BorderColor="DarkGreen" CornerRadius="30" Padding="0">
+            <Entry x:Name="UserNameField" BackgroundColor="White" Placeholder="Användarnamn"></Entry>
+            </Frame>
+            <Frame BorderColor="DarkGreen" CornerRadius="30" Padding="0">
+                <Entry x:Name="PasswordField" BackgroundColor="White" IsPassword="True" Placeholder="Lösenord"></Entry>
+            </Frame>
+            <Button  x:Name="LoginButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="#00471f" Text="Logga in" TextColor="White"  Clicked="LoginButton_Clicked" />
+            <Label FontAttributes="Bold" TextColor="Black" Text="Eller logga in med" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <StackLayout Orientation="Horizontal">
+                <Button  x:Name="GoogleButton" Margin="10" CornerRadius="30" FontSize="16" FontAttributes="Bold" Padding="10, 5, 10, 5" BackgroundColor="LightGray" Text="Google" TextColor="Gray"  Clicked="LoginButton_Clicked" />
+                <Button  x:Name="AppleButton" Margin="10" CornerRadius="30" FontSize="16" FontAttributes="Bold" Padding="10, 5, 10, 5" BackgroundColor="Black" Text="Apple" TextColor="White"  Clicked="LoginButton_Clicked" />
+            </StackLayout>
+            <Label FontAttributes="Bold" TextColor="Black" Text="Inget konto än?" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <Button  x:Name="RegisterButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="#00471f" Text="Registrera" TextColor="White"  Clicked="LoginButton_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

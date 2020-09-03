@@ -2,7 +2,7 @@
 
 namespace GodResenar.Functions
 {
-    class User
+    static class User
     {
         private static string userName;
         private static Image userPic;

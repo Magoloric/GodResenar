@@ -1,0 +1,30 @@
+﻿[
+  {
+    "Name" : "50kr värdecheck",
+      "Description" : "Ett check som ger dig 50kr rabatt på biljetter och periodkort",
+    "Availability" : "true",
+    "PictureSource" : "",
+    "Price" : "2000"
+  },
+  {
+    "Name": "100kr värdecheck",
+    "Description": "Ett check som ger dig 100kr rabatt på biljetter och periodkort",
+    "Availability": "true",
+    "PictureSource": "",
+    "Price": "3700"
+  },
+  {
+    "Name": "20% rabatt på Health Store",
+    "Description": "Ett check som ger dig 20% rabatt på ett köp hos våra partners på Health Store. OBS! Rabatten gäller endast en månad efter köpet och kan ej kombineras med andra erbjudande och rabatter.",
+    "Availability": "true",
+    "PictureSource": "",
+    "Price": "3000"
+  },
+  {
+    "Name": "5% rabatt på Extra Sko",
+    "Description": "Ett check som ger dig 20% rabatt på ett köp hos våra partners på Extra Sko. OBS! Rabatten gäller endast en månad efter köpet och kan ej kombineras med andra erbjudande och rabatter.",
+    "Availability": "false",
+    "PictureSource": "",
+    "Price": "2000"
+  }
+]

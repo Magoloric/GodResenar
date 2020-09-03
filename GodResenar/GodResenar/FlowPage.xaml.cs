@@ -7,7 +7,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GodResenar 
+namespace GodResenar
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlowPage : ContentPage
@@ -15,11 +15,11 @@ namespace GodResenar
 
         ReportHandler rh = new ReportHandler();
         ObservableCollection<Report> rc = new ObservableCollection<Report>();
-        enum SortBy { 
+        enum SortBy {
             Date,
             Votes
         };
-        enum FilterBy { 
+        enum FilterBy {
             All,
             Arvika,
             Eda,
@@ -86,7 +86,7 @@ namespace GodResenar
 
         private void ReportCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-    
+
         }
 
         private void VoteButton_Clicked(object sender, System.EventArgs e)
@@ -96,7 +96,7 @@ namespace GodResenar
 
         private void Entry_Tapped(object sender, System.EventArgs e)
         {
-            
+
         }
 
     }
