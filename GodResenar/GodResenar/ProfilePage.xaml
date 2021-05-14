@@ -7,43 +7,47 @@
              mc:Ignorable="d"
              x:Class="GodResenar.ProfilePage"
              Visual="Material"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+                          BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <FlexLayout  Margin="10,10,0,10" BackgroundColor="White" Direction="Row" VerticalOptions="Start">
+        <StackLayout>
+            <FlexLayout  Margin="10,10,0,10" Direction="Row" VerticalOptions="Start">
                 <Frame x:Name="LevelIndicatorColor"
                         CornerRadius="100"
-                           BorderColor="Black" 
+                       BorderColor="Black"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
                        WidthRequest="50">
-                    <Label x:Name="profileInitials" FontSize="40" Text="{Binding CurrentLevel}" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label x:Name="profileInitials" FontSize="40" Text="{Binding CurrentLevel}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" VerticalOptions="Center" HorizontalOptions="Center" />
                 </Frame>
                 <StackLayout Orientation="Vertical" FlexLayout.Grow="4" Padding="5" HorizontalOptions="FillAndExpand">
                         <Label x:Name="userNameLabel" Text="{Binding UserName}" FontSize="22"
              FontAttributes="Bold"
-                           TextColor="Black"/>
-                    <Label  x:Name="pointsAndLevelLabel"  Margin="5,0,0,0"  Text="{Binding PointsAndLevel}" TextColor="#007934" FontSize="15"/>
+                           TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"/>
+                    <Label  x:Name="pointsAndLevelLabel"  Margin="5,0,0,0"  Text="{Binding PointsAndLevel}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="15"/>
                             <ProgressBar  x:Name="nextLevelProgress"  Progress="{Binding LevelProgress}" ProgressColor="#007934" HorizontalOptions="FillAndExpand" HeightRequest="10" Margin="0,5,0,5"/>
                     </StackLayout>
                 </FlexLayout>
             <FlexLayout Direction="Row" Margin="5,5,5,5">
-                <Label x:Name="saldoLabel" FlexLayout.Grow="3" Text="{Binding Saldo, StringFormat='Saldo: {0} poäng'}" TextColor="Black" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" Padding="0, 5, 0, 5"/>
-                <Button x:Name="shopButton" FontSize="30" TextColor="#00471f"  FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0110;" BackgroundColor="#F4D242"  Clicked="ShopButton_Clicked"/>
+                <Label x:Name="saldoLabel" FlexLayout.Grow="3" Text="{Binding Saldo, StringFormat='Saldo: {0} poäng'}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" Padding="0, 5, 0, 5"/>
+                <Button x:Name="shopButton" FontSize="30" TextColor="{StaticResource SecondaryColor}"  FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0110;" BackgroundColor="{StaticResource PrimaryColor}"  Clicked="ShopButton_Clicked"/>
             </FlexLayout>
             <ScrollView x:Name="StatisticView" VerticalOptions="FillAndExpand" Margin="5,0,5,0">
-                <ultimateChart:SupportPieChartExtended 
-                    x:Name="ReportStats"  
-           HorizontalOptions="FillAndExpand"  
-           VerticalOptions="FillAndExpand" 
+                <ultimateChart:SupportPieChartExtended
+                    x:Name="ReportStats"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand"
                     Margin="15,15,15,15"
-                    CenterText="true"/>
+                    CenterText="true"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"/>
             </ScrollView>
-            <Frame BorderColor="#007934"
+            <Frame
                    VerticalOptions="End"
-                   CornerRadius="0">
-                <FlexLayout  Direction="Row" BackgroundColor="White" JustifyContent="SpaceBetween">
-                    <Button x:Name="FlowButton" FontSize="40" TextColor="#00471f"  FlexLayout.Shrink="2" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f00e5;" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="#F4D242"  Margin="15" CornerRadius="37" Clicked="FlowButton_Clicked" />
-                    <Button x:Name="NewReportButton" FontSize="50" TextColor="#00471f" FlexLayout.Grow="1" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f03eb;" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#F4D242"  Margin="0"   CornerRadius="100" Clicked="NewReportButton_Clicked" />
-                    <Button x:Name="SettingsButton" FontSize="40" TextColor="#00471f"  FlexLayout.Shrink="2" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f05b7;" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" BackgroundColor="#F4D242"  Margin="15"    CornerRadius="37" Clicked="SettingsButton_Clicked" />
+                   CornerRadius="0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
+                <FlexLayout  Direction="Row" JustifyContent="SpaceBetween">
+                    <Button x:Name="FlowButton" FontSize="40" TextColor="{StaticResource SecondaryColor}"  FlexLayout.Shrink="2" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f00e5;" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="{StaticResource PrimaryColor}"  Margin="15" CornerRadius="37" Clicked="FlowButton_Clicked" />
+                    <Button x:Name="NewReportButton" FontSize="50" TextColor="{StaticResource SecondaryColor}" FlexLayout.Grow="1" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f03eb;" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource PrimaryColor}"  Margin="0"   CornerRadius="100" Clicked="NewReportButton_Clicked" />
+                    <Button x:Name="SettingsButton" FontSize="40" TextColor="{StaticResource SecondaryColor}"  FlexLayout.Shrink="2" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f05b7;" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource PrimaryColor}"  Margin="15"    CornerRadius="37" Clicked="SettingsButton_Clicked" />
                 </FlexLayout>
             </Frame>
         </StackLayout>

@@ -58,11 +58,11 @@ namespace GodResenar
                 nrOfReports = 57;
                 saldo = 1665;
                 levelProgress = 0.23f;
-                currentLevel = 2;
+                currentLevel = 6;
             }
             else
             {
-                LevelProgress = (float)System.Math.Round(LevelProgress, 1);
+                LevelProgress = (float)Math.Round(LevelProgress, 1);
             }
         InitializeComponent();
             initDiagrams();
@@ -136,11 +136,11 @@ namespace GodResenar
             entries.Add(new PieEntry(nrOfAcceptedReports, "Accepterade"));
             entries.Add(new PieEntry(nrOfReports - (int)nrOfAcceptedReports, "Övriga"));
 
-            var dataSet = new PieDataSet(entries, "")
+            var dataSet = new PieDataSet(entries, " ")
             {
                 Colors = new List<Color>()
                 {
-                    Color.DarkGreen, Color.LightGreen
+                    Color.FromHex("529262"), Color.FromHex("EDE456")
                 },
                 ValueFormatter = new CustomPercentDataSetValueFormatter(),
                 SliceSpace = 25f,
@@ -155,11 +155,9 @@ namespace GodResenar
             var statistics = new PieChartData(dataSet);
             ReportStats.ChartData = statistics;
             ReportStats.DrawCenterText = true;
-            ReportStats.CenterTextRadiusPercent = 100;
             ReportStats.CenterText = NrOfReports.ToString();
             ReportStats.DrawEntryLabels = false;
-
-
+            ReportStats.DescriptionChart.Text = "";
         }
     }
 }

@@ -7,7 +7,7 @@
              ios:Page.UseSafeArea="true"
              Visual="Material"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#F4D242">
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.BindingContext>
         <ob:OnboardingHandler />
     </ContentPage.BindingContext>
@@ -16,7 +16,7 @@
     <ContentPage.Content>
         <StackLayout>
             <CarouselView x:Name="onBoardingCarousel"
-                          ItemsSource="{Binding Items}"                          
+                          ItemsSource="{Binding Items}"
                           VerticalOptions="Center"
                           Position="{Binding Position}"
                           IndicatorView="indicatorView">
@@ -28,16 +28,18 @@
                                     JustifyContent="SpaceEvenly">
                                 <Label Text="{Binding Title}"
                                        FontAttributes="Bold"
-                                       FontSize="Title" 
+                                       FontSize="Title"
+                                       TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
                                        HorizontalTextAlignment="Center"
                                        VerticalOptions="EndAndExpand"/>
-                                <!--    <ffimageloadingsvg:SvgCachedImage                                           
-                                                            Source="{Binding ImageUrl}"                                                                                                                                                                                                              
+                                <!--    <ffimageloadingsvg:SvgCachedImage
+                                                            Source="{Binding ImageUrl}"
                                        Aspect="AspectFill"
-                                       WidthRequest="300" 
+                                       WidthRequest="300"
                                        FlexLayout.AlignSelf="Center"/> -->
                                 <Label Text="{Binding Content}"
                                        FontSize="Body"
+                                       TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
                                        HorizontalTextAlignment="Center"/>
                             </FlexLayout>
                         </ContentView>
@@ -49,8 +51,8 @@
                            Padding="16"
                            FlexLayout.Grow="1"
                     IndicatorsShape="Circle"
-                    IndicatorColor="#00471f"
-                    SelectedIndicatorColor="White"
+                    IndicatorColor="{StaticResource PrimaryColor}"
+                    SelectedIndicatorColor="{StaticResource SecondaryColor}"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="Center"/>
                 <Button
@@ -58,8 +60,8 @@
                     Margin="20"
                     FontSize="Medium"
                     FontAttributes="Bold"
-                    TextColor="White"
-                    BackgroundColor="#00471f"
+                    TextColor="{StaticResource SecondaryColor}"
+                    BackgroundColor="{StaticResource PrimaryColor}"
                     Text="{Binding SkipButtonText}"
                     Clicked="SkipButton_Clicked"/>
             </FlexLayout>

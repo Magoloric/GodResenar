@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GodResenar.PermissionPage"
+                          Visual="Material"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
+    <ContentPage.Content>
+        <FlexLayout Direction="Column"
+                                        Padding="20"
+                                    JustifyContent="SpaceEvenly">
+            <Label Text="Innan vi börjar..."
+                   TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
+                                       FontAttributes="Bold"
+                                       FontSize="Title"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="EndAndExpand"/>
+            <!--    <ffimageloadingsvg:SvgCachedImage
+                                                            Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       WidthRequest="300"
+                                       FlexLayout.AlignSelf="Center"/> -->
+            <Label Text="Vi måste be dig om följande tillstånd:"
+                                       FontSize="Body"
+                   TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
+                                       HorizontalTextAlignment="Center"/>
+            <Button  x:Name="PermissionButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="{StaticResource PrimaryColor}" Text="Ge permissioner" TextColor="{StaticResource SecondaryColor}"  Clicked="PermissionButton_Clicked" />
+            <Button  x:Name="ContinueButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="{StaticResource PrimaryColor}" Text="Kör igång!" TextColor="{StaticResource SecondaryColor}"  Clicked="ContinueButton_Clicked" />
+
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,49 +6,53 @@
              mc:Ignorable="d"
              x:Class="GodResenar.ReportPage"
              Title="Ny rapport"
-             Visual="Material">
+             Visual="Material"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
         <ScrollView>
-         <StackLayout Spacing="10" Padding="10" BackgroundColor="White">
-            <Frame BorderColor="#007934" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                    <Label x:Name="imagePlaceholder" Text="Välj eller ta en bild/video" FontSize="25" FontAttributes="Bold" TextColor="#007934" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                    <Image x:Name="imagePreview" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-                </StackLayout>
-            </Frame>
-            <Picker x:Name="CategoryPicker"
+            <StackLayout>
+                <StackLayout x:Name="StepOne" Spacing="10" Padding="10" VerticalOptions="FillAndExpand">
+                <Frame BorderColor="#007934" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Label x:Name="imagePlaceholder" Text="Välj eller ta en bild/video" FontSize="25" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Image x:Name="imagePreview" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </Frame>
+                <Picker x:Name="CategoryPicker"
                         Title="Vad handlar ärendet om?"
-                        TitleColor="DarkGreen">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Buss/Tåg försenad</x:String>
-                        <x:String>Biljettmaskin/läsare trasig</x:String>
-                        <x:String>Trängsel/fullsatt</x:String>
-                        <x:String>Defekter på bussen/tåget</x:String>
-                        <x:String>Farlig hållplatsläge</x:String>
-                        <x:String>Förslag och önskemål</x:String>
-                        <x:String>Annat</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <FlexLayout x:Name="PhotoButtons" JustifyContent="Center">
-                    <Button  x:Name="takePhoto" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0100;" BackgroundColor="#F4D242" TextColor="#00471f" Margin="5" Clicked="takePhoto_Clicked"/>
-                    <Button  x:Name="takeVideo" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0567;" BackgroundColor="#F4D242" TextColor="#00471f" Margin="5" Clicked="takeVideo_Clicked"/>
-                    <Button  x:Name="pickPhoto" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f021f;" BackgroundColor="#F4D242" TextColor="#00471f" Margin="5" Clicked="pickPhoto_Clicked"/>
-                    <Button  x:Name="pickVideo" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f022b;" BackgroundColor="#F4D242" TextColor="#00471f" Margin="5" Clicked="pickVideo_Clicked"/>
-            </FlexLayout>
-            <StackLayout x:Name="DescriptionButtons"  HorizontalOptions="FillAndExpand" IsVisible="False">
+                        TitleColor="{StaticResource PrimaryColor}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Buss/Tåg försenad</x:String>
+                            <x:String>Biljettmaskin/läsare trasig</x:String>
+                            <x:String>Trängsel/fullsatt</x:String>
+                            <x:String>Defekter på bussen/tåget</x:String>
+                            <x:String>Farlig hållplatsläge</x:String>
+                            <x:String>Förslag och önskemål</x:String>
+                            <x:String>Annat</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <FlexLayout x:Name="PhotoButtons" JustifyContent="Center">
+                        <Button  x:Name="takePhoto" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0100;" BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource SecondaryColor}" Margin="5" Clicked="takePhoto_Clicked"/>
+                        <Button  x:Name="takeVideo" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0567;" BackgroundColor="{StaticResource PrimaryColor}"  TextColor="{StaticResource SecondaryColor}" Margin="5" Clicked="takeVideo_Clicked"/>
+                        <Button  x:Name="pickPhoto" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f021f;" BackgroundColor="{StaticResource PrimaryColor}"  TextColor="{StaticResource SecondaryColor}" Margin="5" Clicked="pickPhoto_Clicked"/>
+                        <Button  x:Name="pickVideo" FontSize="50" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f022b;" BackgroundColor="{StaticResource PrimaryColor}"  TextColor="{StaticResource SecondaryColor}" Margin="5" Clicked="pickVideo_Clicked"/>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout x:Name="StepTwo"  HorizontalOptions="FillAndExpand" IsVisible="False">
                 <FlexLayout  Direction="Row" HeightRequest="50">
-                        <Editor x:Name="MessageField" Keyboard="Default" BackgroundColor="White" TextColor="Black" FlexLayout.Grow="1"/>
+                        <Entry x:Name="Title" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" Placeholder="Användarnamn"></Entry>
+                        <Editor x:Name="MessageField" Keyboard="Default" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FlexLayout.Grow="1"/>
                         <ProgressBar x:Name="recordingBar" Progress="{Binding RecordingProgress}" HeightRequest="10" IsVisible="False"  FlexLayout.Grow="1" />
-                        <Button x:Name="audioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f036c;" FlexLayout.Shrink="1" TextColor="#00471f" BackgroundColor="#F4D242" Margin="5" CornerRadius="20" IsVisible="True" Clicked="audioMessage_Clicked"/>
-                        <Button x:Name="stopRecording" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f04db;" TextColor="#00471f" BackgroundColor="#F4D242"  Margin="5" CornerRadius="20" IsVisible="False" Clicked="stopRecording_Clicked" />
-                        <Button x:Name="playAudioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f040e;" FlexLayout.Grow="1" TextColor="#00471f" BackgroundColor="#F4D242"  Margin="5"  CornerRadius="20" IsVisible="False" Clicked="playAudioMessage_Clicked" />
-                        <Button x:Name="deleteAudioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f09e7;" FlexLayout.Grow="1" TextColor="#00471f" BackgroundColor="#F4D242"  Margin="5"   CornerRadius="20" IsVisible="False" Clicked="deleteAudioMessage_Clicked" />
+                        <Button x:Name="audioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f036c;" FlexLayout.Shrink="1" TextColor="{StaticResource SecondaryColor}" BackgroundColor="{StaticResource PrimaryColor}" Margin="5" CornerRadius="20" IsVisible="True" Clicked="audioMessage_Clicked"/>
+                        <Button x:Name="stopRecording" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f04db;" TextColor="{StaticResource SecondaryColor}" BackgroundColor="{StaticResource PrimaryColor}"  Margin="5" CornerRadius="20" IsVisible="False" Clicked="stopRecording_Clicked" />
+                        <Button x:Name="playAudioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f040e;" FlexLayout.Grow="1" TextColor="{StaticResource SecondaryColor}" BackgroundColor="{StaticResource PrimaryColor}"  Margin="5"  CornerRadius="20" IsVisible="False" Clicked="playAudioMessage_Clicked" />
+                        <Button x:Name="deleteAudioMessage" FontSize="30" FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f09e7;" FlexLayout.Grow="1" TextColor="{StaticResource SecondaryColor}" BackgroundColor="{StaticResource PrimaryColor}"  Margin="5"   CornerRadius="20" IsVisible="False" Clicked="deleteAudioMessage_Clicked" />
                 </FlexLayout>
             <Grid>
-                <Button  Grid.Row="0" Grid.Column="0" x:Name="retakePhoto"  Text="AVBRYT" BackgroundColor="#F4D242" TextColor="#00471f" Clicked="retakePhoto_Clicked" />
-                <Button Grid.Row="0" Grid.Column="1" x:Name="sendReport"  Text="SKICKA" BackgroundColor="#F4D242" TextColor="#00471f" Clicked="sendReport_Clicked"/>
+                        <Button  Grid.Row="0" Grid.Column="0" x:Name="retakePhoto"  Text="AVBRYT" BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource SecondaryColor}" Clicked="retakePhoto_Clicked" />
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="sendReport"  Text="SKICKA" BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource SecondaryColor}" Clicked="sendReport_Clicked"/>
             </Grid>
             </StackLayout>
         </StackLayout>

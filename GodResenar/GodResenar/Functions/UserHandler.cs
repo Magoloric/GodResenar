@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Microsoft.Identity.Client;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace GodResenar.Functions
 {
@@ -87,18 +88,19 @@ namespace GodResenar.Functions
         }
         public static void GetUserInfo(AuthenticationResult authResult)
         {
-
+            /*
             var token = authResult.IdToken;
             var payload = Jose.JWT.Payload(token);
 
             var payloadJSON = JObject.Parse(payload);
             User.UserName = payloadJSON.Value<String>("name");
-
+            */
             //Placeholder data, will be fixed as soon as I find a way to get all the user data
+            User.UserName = "Sven Svensson";
             User.Email = "info@magolor.ic";
             User.Phone = "+123456789";
-            User.PointSaldo = 4425;
-            User.PointsCollected = 7244;
+            User.PointSaldo = 1665;
+            User.PointsCollected = 2665;
             User.UserLevel = 7;
             User.UserPic = new Xamarin.Forms.Image
             {
@@ -107,6 +109,10 @@ namespace GodResenar.Functions
             User.ReportsAccepted = 13;
             User.ReportsSent = 20;
 
-        }  
+        }
+        public static void UpdateUserData()
+        {
+
+        }
     }
 }

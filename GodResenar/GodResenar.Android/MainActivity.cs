@@ -20,10 +20,9 @@ namespace GodResenar.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Forms.SetFlags("Expander_Experimental");
+            Forms.SetFlags("AppTheme_Experimental", "Expander_Experimental", "IndicatorView_Experimental");
             UltimateXFSettup.Initialize(this);
             PlatformGestureEffect.Init();
-            Forms.SetFlags("IndicatorView_Experimental");
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(new App());

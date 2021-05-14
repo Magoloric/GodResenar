@@ -1,6 +1,9 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GodResenar.Functions;
+using Android.Widget;
+using Android.App;
+using Android.Provider;
 
 namespace GodResenar
 {
@@ -30,7 +33,7 @@ namespace GodResenar
                 imagePreview.Source = camera.Preview.Source;
                 imagePlaceholder.IsVisible = false;
                 imagePreview.IsVisible = true;
-                SwitchButtons();
+                ToStepTwo();
             }
         }
 
@@ -46,18 +49,18 @@ namespace GodResenar
                 imagePreview.Source = camera.Preview.Source;
                 imagePlaceholder.IsVisible = false;
                 imagePreview.IsVisible = true;
-                SwitchButtons();
+                ToStepTwo();
             }
         }
-        void SwitchButtons()
+        void ToStepTwo()
         {
-            PhotoButtons.IsVisible = false;
-            DescriptionButtons.IsVisible = true;
+            StepOne.IsVisible = false;
+            StepTwo.IsVisible = true;
         }
-        void SwitchButtonsBack()
+        void ToStepOne()
         {
-            DescriptionButtons.IsVisible = false;
-            PhotoButtons.IsVisible = true;
+            StepTwo.IsVisible = false;
+            StepOne.IsVisible = true;
         }
 
         private async void pickPhoto_Clicked(object sender, System.EventArgs e)
@@ -72,7 +75,7 @@ namespace GodResenar
                 imagePreview.Source = camera.Preview.Source;
                 imagePlaceholder.IsVisible = false;
                 imagePreview.IsVisible = true;
-                SwitchButtons();
+                ToStepTwo();
             }
         }
 
@@ -88,7 +91,7 @@ namespace GodResenar
                 imagePreview.Source = camera.Preview.Source;
                 imagePlaceholder.IsVisible = false;
                 imagePreview.IsVisible = true;
-                SwitchButtons();
+                ToStepTwo();
             }
         }
 
@@ -138,13 +141,23 @@ namespace GodResenar
             imagePreview.IsVisible = false;
             MessageField.Text = "";
             recorder.RemoveMessage();
-            SwitchButtonsBack();
+            ToStepOne();
         }
 
         private async void sendReport_Clicked(object sender, System.EventArgs e)
         {
             /*await reporter.SendReport(report);*/
-            await Navigation.PushAsync(new ReportSentPage(), true);
+            bool success = reporter.SendReport();
+
+            if (success == true)
+            {
+                await Navigation.PushAsync(new ReportSentPage(), true);
+            }
+            else
+            {
+                await DisplayAlert("Oj då!", "Kunde inte skicka rapporten. Vänligen försök igen senare", "OK");
+            }
+
         }
     }
 }

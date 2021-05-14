@@ -11,9 +11,9 @@
     <item name="windowActionBar">false</item>
     <!-- Set theme colors from https://aka.ms/material-colors -->
     <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#F4D242</item>
+    <item name="colorPrimary">#529262</item>
     <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">#FFC107</item>
+    <item name="colorPrimaryDark">#529262</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">#00471f</item>
@@ -23,7 +23,7 @@
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
 	<style name="custom_tabViewStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="android:textColor">#00471f</item>
+		<item name="android:textColor">#EDE456</item>
 	</style>
   <style name="MainTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
