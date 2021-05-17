@@ -2,9 +2,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.ComponentModel;
-using UltimateXF.Widget.Charts.Models.PieChart;
-using Xamarin.CommunityToolkit.UI.Views;
-using Xamarin.Forms.Internals;
 
 namespace GodResenar
 {

@@ -1,9 +1,5 @@
 ﻿using GodResenar.Functions;
-using Microsoft.Identity.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

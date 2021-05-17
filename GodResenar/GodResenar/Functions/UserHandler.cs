@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using Microsoft.Identity.Client;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace GodResenar.Functions
 {

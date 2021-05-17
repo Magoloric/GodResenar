@@ -1,14 +1,11 @@
 ﻿
 using GodResenar.Functions;
-using Org.Apache.Http.Authentication;
 using System;
 using System.ComponentModel;
-using System.Linq;
 using Xamarin.Forms;
 using UltimateXF.Widget.Charts.Models.Formatters;
 using UltimateXF.Widget.Charts.Models.PieChart;
 using System.Collections.Generic;
-using Android.App.Job;
 
 namespace GodResenar
 {

@@ -1,9 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GodResenar.Functions;
-using Android.Widget;
-using Android.App;
-using Android.Provider;
 
 namespace GodResenar
 {

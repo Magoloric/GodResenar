@@ -80,9 +80,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.Permissions">
-      <Version>6.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Vapolia.XamarinFormsGesture">
       <Version>3.3.0-preA2</Version>
     </PackageReference>
