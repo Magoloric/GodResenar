@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="GodResenar.ReportPage"
              Title="Ny rapport"
@@ -10,17 +11,19 @@
              BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <StackLayout x:Name="StepOne" Spacing="10" Padding="10" VerticalOptions="FillAndExpand">
+            <StackLayout Padding="15">
                 <Frame BorderColor="#007934" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                            <Label x:Name="imagePlaceholder" Text="Välj eller ta en bild/video" FontSize="25" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                        <Image x:Name="imagePreview" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="imagePlaceholder" Text="Välj eller ta en bild/video" FontSize="25" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Image x:Name="imagePreview" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="true"/>
+                        <xct:MediaElement x:Name="videoPreview"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ShowsPlaybackControls="True" />
                     </StackLayout>
                 </Frame>
-                <Picker x:Name="CategoryPicker"
+                <StackLayout x:Name="StepOne" Spacing="10" Padding="10" VerticalOptions="FillAndExpand">
+                    <Picker x:Name="CategoryPicker"
                         Title="Vad handlar ärendet om?"
-                        TitleColor="{StaticResource PrimaryColor}">
+                        TitleColor="{StaticResource PrimaryColor}"
+                        TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Buss/Tåg försenad</x:String>

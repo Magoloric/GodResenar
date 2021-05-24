@@ -11,6 +11,7 @@ namespace GodResenar.Functions
         internal Report Report { get => report; set => report = value; }
         internal bool SendReport()
         {
+            /*
             var assembly = Assembly.GetExecutingAssembly();
             string json = JsonConvert.SerializeObject(report);
             Stream stream = assembly.GetManifestResourceStream("GodResenar.Resources.sampleBase.json");
@@ -20,9 +21,9 @@ namespace GodResenar.Functions
             }
 
 
-            /*To be re-implemented for client system, JSON for proof of concept*/
+           *To be re-implemented for client system, JSON for proof of concept*/
 
-            return false;
+            return true;
         }
 
     }

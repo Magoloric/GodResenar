@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GodResenar.Functions;
+using Xamarin.CommunityToolkit;
 
 namespace GodResenar
 {
@@ -21,51 +22,42 @@ namespace GodResenar
         private async void takePhoto_Clicked(object sender, System.EventArgs e)
         {
             bool success = await camera.TakePhoto();
-            if (success == false)
+            if (!success)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
+                await DisplayAlert("Oj!", camera.Error, "OK");
             }
             else
             {
                 imagePreview.Source = camera.Preview.Source;
-                imagePlaceholder.IsVisible = false;
                 imagePreview.IsVisible = true;
+                imagePlaceholder.IsVisible = false;
                 ToStepTwo();
             }
         }
 
         private async void takeVideo_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.PickPhoto();
-            if (success == false)
+            bool success = await camera.TakeVideo();
+            if (!success)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
+                await DisplayAlert("Oj!", camera.Error, "OK");
             }
             else
             {
-                imagePreview.Source = camera.Preview.Source;
+                videoPreview.Source = camera.VideoPreview.Source;
                 imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
+                videoPreview.IsVisible = true;
                 ToStepTwo();
             }
         }
-        void ToStepTwo()
-        {
-            StepOne.IsVisible = false;
-            StepTwo.IsVisible = true;
-        }
-        void ToStepOne()
-        {
-            StepTwo.IsVisible = false;
-            StepOne.IsVisible = true;
-        }
+
 
         private async void pickPhoto_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.TakeVideo();
-            if (success == false)
+            bool success = await camera.PickPhoto();
+            if (!success)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
+                await DisplayAlert("Oj!", camera.Error, "OK");
             }
             else
             {
@@ -79,15 +71,15 @@ namespace GodResenar
         private async void pickVideo_Clicked(object sender, System.EventArgs e)
         {
             bool success = await camera.PickVideo();
-            if (success == false)
+            if (!success)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
+                await DisplayAlert("Oj!", camera.Error, "OK");
             }
             else
             {
-                imagePreview.Source = camera.Preview.Source;
+                videoPreview.Source = camera.VideoPreview.Source;
                 imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
+                videoPreview.IsVisible = true;
                 ToStepTwo();
             }
         }
@@ -136,6 +128,7 @@ namespace GodResenar
             camera.RemovePreview();
             imagePlaceholder.IsVisible = true;
             imagePreview.IsVisible = false;
+            videoPreview.IsVisible = false;
             MessageField.Text = "";
             recorder.RemoveMessage();
             ToStepOne();
@@ -146,7 +139,7 @@ namespace GodResenar
             /*await reporter.SendReport(report);*/
             bool success = reporter.SendReport();
 
-            if (success == true)
+            if (success)
             {
                 await Navigation.PushAsync(new ReportSentPage(), true);
             }
@@ -155,6 +148,16 @@ namespace GodResenar
                 await DisplayAlert("Oj då!", "Kunde inte skicka rapporten. Vänligen försök igen senare", "OK");
             }
 
+        }
+        void ToStepTwo()
+        {
+            StepOne.IsVisible = false;
+            StepTwo.IsVisible = true;
+        }
+        void ToStepOne()
+        {
+            StepTwo.IsVisible = false;
+            StepOne.IsVisible = true;
         }
     }
 }
