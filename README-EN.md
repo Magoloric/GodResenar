@@ -36,15 +36,19 @@ More information about the concept can be found in the [thesis the project was o
 - [ ] Complete the prototype:
   * [ ] Rewrite User code 
   * [x] Implement sample point shop
+  * [x] Implement standalone permissions page
   * [ ] Implement voice messages for reporting
-  * [ ] Implement video messages for reporting
   * [ ] Connect report sending process to sample report "database"
-  * [ ] Create registration process and sample user database
- - [ ] Redesign logotype
- - [ ] Redesign report page 
+ - [ ] Visual issues
+  * [ ] Redo the diagram on main page (current framework is too limited, so a better one is needed)
+  * [ ] Photo and video previews when reporting are not working except when you take a picture directly with camera. 
+  * [ ] Permission statuses on Permission Page don't change directly after being allowed
+  * [x] Redraw logo for the project
+  * [ ] Add icons and images where applicable. 
+ - [x] Redesign report page 
 
 Things that are not prioritized at the moment:
 
 - iOS version (Due to lack of MacOS and iOS devices)
-- Back-end (For managing reports, users, shop etc) - will possibly be created later
+- Back-end (For managing reports, users, shop etc) - will be created later in a separate github repo
 - UX/UI redesign - possible in the future
