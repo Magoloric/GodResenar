@@ -187,8 +187,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.9.5.9</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.6.0-pre3</Version>
+      <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
       <Version>6.9.0</Version>

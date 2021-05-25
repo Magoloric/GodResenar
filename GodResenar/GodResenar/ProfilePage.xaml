@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ultimateChart="clr-namespace:UltimateXF.Widget.Charts;assembly=UltimateXF"
+             xmlns:ultimateChart="clr-namespace:UltimateXF.Widget.Charts;assembly=UltimateXF" xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="GodResenar.ProfilePage"
              Visual="Material"
@@ -11,7 +11,7 @@
                           BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
         <StackLayout>
-            <FlexLayout  Margin="10,10,0,10" Direction="Row" VerticalOptions="Start">
+            <FlexLayout  Margin="10,10,0,10" Direction="Row" VerticalOptions="Start" Padding="10">
                 <Frame x:Name="LevelIndicatorColor"
                         CornerRadius="100"
                        BorderColor="Black"
@@ -27,17 +27,15 @@
                             <ProgressBar  x:Name="nextLevelProgress"  Progress="{Binding LevelProgress}" ProgressColor="#007934" HorizontalOptions="FillAndExpand" HeightRequest="10" Margin="0,5,0,5"/>
                     </StackLayout>
                 </FlexLayout>
-            <FlexLayout Direction="Row" Margin="5,5,5,5">
+            <FlexLayout Direction="Row" Margin="5,5,5,5" Padding="10">
                 <Label x:Name="saldoLabel" FlexLayout.Grow="3" Text="{Binding Saldo, StringFormat='Saldo: {0} poäng'}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" Padding="0, 5, 0, 5"/>
                 <Button x:Name="shopButton" FontSize="30" TextColor="{StaticResource SecondaryColor}"  FontFamily="{StaticResource MaterialFontFamily}" Text="&#x000f0110;" BackgroundColor="{StaticResource PrimaryColor}"  Clicked="ShopButton_Clicked"/>
             </FlexLayout>
             <ScrollView x:Name="StatisticView" VerticalOptions="FillAndExpand" Margin="5,0,5,0">
-                <ultimateChart:SupportPieChartExtended
-                    x:Name="ReportStats"
+                <microcharts:ChartView x:Name="chartView"
            HorizontalOptions="FillAndExpand"
            VerticalOptions="FillAndExpand"
                     Margin="15,15,15,15"
-                    CenterText="true"
                     BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"/>
             </ScrollView>
             <Frame

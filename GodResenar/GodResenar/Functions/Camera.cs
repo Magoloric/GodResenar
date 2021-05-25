@@ -18,88 +18,97 @@ namespace GodResenar.Functions
         public MediaElement VideoPreview { get => videoPreview; set => videoPreview = value; }
         public string Error { get => error; set => error = value; }
 
-        internal async Task<bool> TakePhoto()
+        internal async Task<int> TakePhoto()
         {
             try
             {
                 if (!MediaPicker.IsCaptureSupported)
                 {
                     error = "Enheten saknar kameran eller har ingen stöd för fotografering!";
-                    return false;
+                    return -1;
                 }
                 var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                 {
                     Title = DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss") + ".png"
                 });
 
+                if (photo == null)
+                {
+                    return 0;
+                }
+
                 var newFile = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
                 using (var stream = await photo.OpenReadAsync())
                 using (var newStream = File.OpenWrite(newFile))
-                await stream.CopyToAsync(newStream);
+                    await stream.CopyToAsync(newStream);
 
                 preview = new Image();
-                preview.Source = ImageSource.FromFile(newFile);
-                return true;
+                preview.Source = ImageSource.FromFile(photo.FullPath);
+                return 1;
             }
             catch (Exception ex)
             {
                 error = $"Oops, något hände... {ex.Message}";
-                return false;
+                return -1;
             }
         }
 
-        internal async Task<bool> TakeVideo()
+        internal async Task<int> TakeVideo()
         {
             if (!MediaPicker.IsCaptureSupported)
             {
                 error = "Enheten saknar kameran eller har ingen stöd för videoinspelning!";
-                return false;
+                return -1;
             }
             try
             {
                 var video = await MediaPicker.CaptureVideoAsync(new MediaPickerOptions()
-            {
+                {
                     Title = DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss") + ".mp4"
                 });
 
                 if (video == null)
                 {
-                    return false;
+                    return 0;
                 }
 
                 var newFile = Path.Combine(FileSystem.AppDataDirectory, video.FileName);
                 using (var stream = await video.OpenReadAsync())
                 using (var newStream = File.OpenWrite(newFile))
                     await stream.CopyToAsync(newStream);
-
                 videoPreview = new MediaElement();
-                videoPreview.Source = MediaSource.FromFile(newFile);
-                return true;
+                videoPreview.Source = MediaSource.FromFile(video.FullPath);
+                return 1;
             }
             catch (Exception ex)
             {
                 error = "Oops, något hände... " + ex.Message;
-                return false;
+                return -1;
             }
         }
-        internal async Task<bool> PickPhoto()
+        internal async Task<int> PickPhoto()
         {
             try
             {
                 var photo = await MediaPicker.PickPhotoAsync();
+
+                if (photo == null)
+                {
+                    return 0;
+                }
                 preview = new Image();
                 preview.Source = ImageSource.FromFile(photo.FullPath);
 
-                return true;
+                return 1;
             }
 
             catch (Exception ex)
             {
                 error = "Oops, något hände... " + ex.Message;
-                return false;
+                return -1;
             }
         }
-        internal async Task<bool> PickVideo()
+        internal async Task<int> PickVideo()
         {
 
             try
@@ -108,25 +117,26 @@ namespace GodResenar.Functions
 
                 if (video == null)
                 {
-                    return false;
+                    return 0;
                 }
                 videoPreview = new MediaElement();
                 videoPreview.Source = MediaSource.FromFile(video.FullPath);
 
-                return true;
+                return 1;
             }
 
             catch (Exception ex)
             {
                 error = "Oops, något hände... " + ex.Message;
-                return false;
+                return -1;
             }
         }
 
 
         internal void RemovePreview()
         {
-                preview = null;
+            preview = null;
+            videoPreview = null;
+        }
     }
-}
 }

@@ -3,22 +3,14 @@ using GodResenar.Functions;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
-using UltimateXF.Widget.Charts.Models.Formatters;
-using UltimateXF.Widget.Charts.Models.PieChart;
-using System.Collections.Generic;
+using Microcharts;
+using SkiaSharp;
 
 namespace GodResenar
 {
 
     [DesignTimeVisible(false)]
 
-    public class CustomPercentDataSetValueFormatter : IDataSetValueFormatter
-    {
-        public string GetFormattedValue(float value, int dataSetIndex)
-        {
-            return value.ToString();
-        }
-    }
     public partial class ProfilePage : ContentPage
     {
         string userName = User.UserName;
@@ -127,34 +119,31 @@ namespace GodResenar
         public void initDiagrams()
         {
 
-            var entries = new List<PieEntry>();
-
-
-            entries.Add(new PieEntry(nrOfAcceptedReports, "Accepterade"));
-            entries.Add(new PieEntry(nrOfReports - (int)nrOfAcceptedReports, "Övriga"));
-
-            var dataSet = new PieDataSet(entries, " ")
+            var entries = new[]
             {
-                Colors = new List<Color>()
+                new ChartEntry(NrOfReports)
                 {
-                    Color.FromHex("529262"), Color.FromHex("EDE456")
+                    Label = "Övriga",
+                    ValueLabel = NrOfReports.ToString(),
+                    Color = SKColor.Parse("#EDE456"),
+                    TextColor = SKColor.Parse("#EDE456"),
+                    ValueLabelColor = SKColor.Parse("#EDE456")
                 },
-                ValueFormatter = new CustomPercentDataSetValueFormatter(),
-                SliceSpace = 25f,
-                ValueTextSize = 25,
-                HighlightEnabled = true,
-                ValueColors = new List<Color>()
+                new ChartEntry(NrOfAcceptedReports)
                 {
-                    Color.White, Color.Black
+                    Label = "Accepterade",
+                    ValueLabel = NrOfAcceptedReports.ToString(),
+                    Color = SKColor.Parse("#529262"),
+                    TextColor = SKColor.Parse("#529262"),
+                    ValueLabelColor = SKColor.Parse("#529262")
                 }
             };
-
-            var statistics = new PieChartData(dataSet);
-            ReportStats.ChartData = statistics;
-            ReportStats.DrawCenterText = true;
-            ReportStats.CenterText = NrOfReports.ToString();
-            ReportStats.DrawEntryLabels = false;
-            ReportStats.DescriptionChart.Text = "";
+            var chart = new DonutChart { Entries = entries };
+            chartView.Chart = chart;
+            chart.BackgroundColor = SKColor.Empty;
+            chart.LabelTextSize = 40;
+            chart.LabelColor = SKColors.White;
+            chart.LabelMode = LabelMode.RightOnly;
         }
     }
 }

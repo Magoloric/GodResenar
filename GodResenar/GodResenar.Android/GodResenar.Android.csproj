@@ -80,6 +80,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.9.5.9</Version>
+    </PackageReference>
     <PackageReference Include="Vapolia.XamarinFormsGesture">
       <Version>3.3.0-preA2</Version>
     </PackageReference>
@@ -99,7 +102,7 @@
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre3" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFImageLoading\Forms.cs" />
