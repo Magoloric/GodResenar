@@ -56,6 +56,7 @@ namespace GodResenar
         InitializeComponent();
             initDiagrams();
             setLevelColor();
+            InitAnimations();
         }
         protected override bool OnBackButtonPressed()
         {
@@ -144,6 +145,31 @@ namespace GodResenar
             chart.LabelTextSize = 40;
             chart.LabelColor = SKColors.White;
             chart.LabelMode = LabelMode.RightOnly;
+        }
+        internal void InitAnimations()
+        {
+            NewReportButton.IsVisible = true;
+            FlowButton.IsVisible = true;
+            SettingsButton.IsVisible = true;
+
+            new Animation {
+
+              //User info
+              { 0, 0.6, new Animation (v => UserInfo.TranslationY = v, -400, 0) },
+              //Shop & saldo
+                          { 0, 0.6, new Animation (v => ShopAndSaldo.TranslationY = v, -400, 0) },
+            //Bottom buttons
+              //Report button
+             { 0, 0.4, new Animation (v => NewReportButton.TranslationY = v, 400, -20) },
+              { 0.4, 0.8, new Animation (v => NewReportButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) },
+              //Feed button
+                { 0, 0.5, new Animation (v => FlowButton.TranslationY = v, 400, -20) },
+              { 0.5, 1, new Animation (v => FlowButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) },
+              //Settings button
+              { 0, 0.5, new Animation (v => SettingsButton.TranslationY = v, 400, -20) },
+              { 0.5, 1, new Animation (v => SettingsButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) }
+            }
+            .Commit(this, "FlowButton", length: 1500, repeat: () => false);
         }
     }
 }

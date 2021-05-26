@@ -5,7 +5,6 @@ using Android.Content;
 using Vapolia.Droid.Lib.Effects;
 using Microsoft.Identity.Client;
 using Xamarin.Forms;
-using UltimateXF.Droid;
 
 namespace GodResenar.Droid
 {
@@ -20,7 +19,6 @@ namespace GodResenar.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.SetFlags("AppTheme_Experimental", "Expander_Experimental", "IndicatorView_Experimental");
-            UltimateXFSettup.Initialize(this);
             PlatformGestureEffect.Init();
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
