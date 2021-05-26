@@ -1,154 +1,142 @@
-﻿using Plugin.Media;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using System.IO;
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.CommunityToolkit.Core;
 
 namespace GodResenar.Functions
 {
     internal class Camera
     {
         private Image preview;
+        private MediaElement videoPreview;
         private string error;
 
         public Image Preview { get => preview; set => preview = value; }
+        public MediaElement VideoPreview { get => videoPreview; set => videoPreview = value; }
         public string Error { get => error; set => error = value; }
 
-        internal async Task<bool> TakePhoto()
+        internal async Task<int> TakePhoto()
         {
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                error = "Kameran verkar inte finnas på enheten!";
-                return false;
-            }
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "Godresenar",
-                Name = "GodResenar" + DateTime.Now.ToString() + "photo.jpg",
-            });
             try
             {
-
-                if (file == null)
+                if (!MediaPicker.IsCaptureSupported)
                 {
-                    error = "Gick inte att spara filen! Kolla så att du har utrymme kvar för det!";
-                    return false;
+                    error = "Enheten saknar kameran eller har ingen stöd för fotografering!";
+                    return -1;
                 }
-                preview = new Image();
-                preview.Source = ImageSource.FromStream(() =>
+                var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                 {
-                    var stream = file.GetStream();
-                    return stream;
+                    Title = DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss") + ".png"
                 });
-                return true;
+
+                if (photo == null)
+                {
+                    return 0;
+                }
+
+                var newFile = Path.Combine(FileSystem.AppDataDirectory, photo.FileName);
+                using (var stream = await photo.OpenReadAsync())
+                using (var newStream = File.OpenWrite(newFile))
+                    await stream.CopyToAsync(newStream);
+
+                preview = new Image();
+                preview.Source = ImageSource.FromFile(photo.FullPath);
+                return 1;
             }
             catch (Exception ex)
             {
                 error = $"Oops, något hände... {ex.Message}";
-                return false;
+                return -1;
             }
         }
 
-        internal async Task<bool> TakeVideo()
+        internal async Task<int> TakeVideo()
         {
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakeVideoSupported)
+            if (!MediaPicker.IsCaptureSupported)
             {
-                error = "Kameran verkar inte finnas på enheten!";
-                return false;
+                error = "Enheten saknar kameran eller har ingen stöd för videoinspelning!";
+                return -1;
             }
-            var file = await CrossMedia.Current.TakeVideoAsync(new Plugin.Media.Abstractions.StoreVideoOptions
-            {
-                Name = "GodResenar" + DateTime.Now.ToString() + "vid.mp4",
-                Directory = "Godresenar",
-            });
             try
             {
-                if (file == null)
+                var video = await MediaPicker.CaptureVideoAsync(new MediaPickerOptions()
                 {
-                    return false;
+                    Title = DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss") + ".mp4"
+                });
+
+                if (video == null)
+                {
+                    return 0;
+                }
+
+                var newFile = Path.Combine(FileSystem.AppDataDirectory, video.FileName);
+                using (var stream = await video.OpenReadAsync())
+                using (var newStream = File.OpenWrite(newFile))
+                    await stream.CopyToAsync(newStream);
+                videoPreview = new MediaElement();
+                videoPreview.Source = MediaSource.FromFile(video.FullPath);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                error = "Oops, något hände... " + ex.Message;
+                return -1;
+            }
+        }
+        internal async Task<int> PickPhoto()
+        {
+            try
+            {
+                var photo = await MediaPicker.PickPhotoAsync();
+
+                if (photo == null)
+                {
+                    return 0;
                 }
                 preview = new Image();
-                
-                preview.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    file.Dispose();
-                    return stream;
-                });
-                return true;
+                preview.Source = ImageSource.FromFile(photo.FullPath);
+
+                return 1;
             }
+
             catch (Exception ex)
             {
                 error = "Oops, något hände... " + ex.Message;
-                return false;
+                return -1;
             }
         }
-
-        internal async Task<bool> PickVideo()
+        internal async Task<int> PickVideo()
         {
-            if (!CrossMedia.Current.IsPickVideoSupported)
-            {
-                error = "Du måste tillåta videoinspelningen innan du fortsätter!";
-                return false;
-            }
 
-            var file = await CrossMedia.Current.PickVideoAsync();
             try
             {
+                var video = await MediaPicker.PickVideoAsync();
 
-                if (file == null)
-                    return false;
-
-                preview = new Image();
-                preview.Source = ImageSource.FromStream(() =>
+                if (video == null)
                 {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                error = "Oops, något hände... " + ex.Message;
-                return false;
-            }
-        }
-
-        internal async Task<bool> PickPhoto()
-        {
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                error = "Du måste tillåta appen att använda kameran innan du fortsätter!";
-                return false;
-            }
-            var file = await CrossMedia.Current.PickPhotoAsync().ConfigureAwait(true);
-            try
-            {
-
-
-                if (file == null)
-                {
-                    error = "Gick inte att öppna filen!";
-                    return false;
+                    return 0;
                 }
-                preview = new Image();
-                preview.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-                return true;
+                videoPreview = new MediaElement();
+                videoPreview.Source = MediaSource.FromFile(video.FullPath);
+
+                return 1;
             }
+
             catch (Exception ex)
             {
                 error = "Oops, något hände... " + ex.Message;
-                return false;
+                return -1;
             }
         }
+
 
         internal void RemovePreview()
         {
-                preview = null;
+            preview = null;
+            videoPreview = null;
+        }
     }
-}
 }

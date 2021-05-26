@@ -2,11 +2,9 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Content;
-
 using Vapolia.Droid.Lib.Effects;
 using Microsoft.Identity.Client;
 using Xamarin.Forms;
-using UltimateXF.Droid;
 
 namespace GodResenar.Droid
 {
@@ -20,26 +18,14 @@ namespace GodResenar.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Forms.SetFlags("Expander_Experimental");
-            UltimateXFSettup.Initialize(this);
+            Forms.SetFlags("AppTheme_Experimental", "Expander_Experimental", "IndicatorView_Experimental");
             PlatformGestureEffect.Init();
-            Forms.SetFlags("IndicatorView_Experimental");
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(new App());
             App.UIParent = this;
             App.AuthUIParent = this;
 
-        }
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
-            AuthenticationContinuationHelper
-                .SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
-        }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
-        {
-            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

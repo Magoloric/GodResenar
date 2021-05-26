@@ -6,28 +6,32 @@
              mc:Ignorable="d"
              x:Class="GodResenar.SettingsPage"
              Visual="Material"
-             Title="Inställningar">
+             Title="Inställningar"
+              BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
+        <StackLayout>
             <TableView Intent="Settings">
                 <TableRoot>
-                    <TableSection Title="Din profil" TextColor="Black">
-                        <EntryCell Label="Telefon"  LabelColor="#007934" Text="07XXXXXXXX" />
-                        <EntryCell Label="E-post" LabelColor="#007934" Text="exempel@post.com" />
+                    <TableSection Title="Din profil" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}">
+                        <EntryCell Label="Telefon"  LabelColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Text="07XXXXXXXX" />
+                        <EntryCell Label="E-post" LabelColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Text="exempel@post.com" />
                     </TableSection>
-                    <TableSection Title="App-inställningar" TextColor="Black">
-                        <SwitchCell x:Name="AnonimitySwitch"  Text="Dölj ditt användarnamn på inlägg i flödet" On="False"/>
+                    <TableSection Title="Publikationer" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}">
+                        <SwitchCell x:Name="AnonimitySwitch"  Text="Dölj användarnamn i dina publikationer" On="False"/>
                     </TableSection>
-                    <TableSection Title="Hjälp och tips" TextColor="Black">
-                        <TextCell x:Name="FAQ" Text="Frågor och svar" TextColor="#007934" Tapped="FAQ_Tapped"/>
-                        <TextCell x:Name="ContactSupport" Text="Kundservice" TextColor="#007934" Tapped="ContactSupport_Tapped"/>
-                        <TextCell x:Name="RedoEntry" Text="Kör startskärmar igen" TextColor="#007934" Tapped="RedoEntry_Tapped"/>
+                    <TableSection Title="Gränssnitt" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}">
+                        <SwitchCell x:Name="ThemeToggle"  Text="Tvinga invertering" On="False"/>
                     </TableSection>
-                    <TableSection Title="Information" TextColor="Black">
-                        <TextCell x:Name="AboutApplication" Text="Om appen" Detail="Version X" TextColor="#007934" Tapped="AboutApplication_Tapped"/>
-                        <TextCell x:Name="OpenSourceLicense" Text="Licens för öppen källkod" Detail="Exempellicens" TextColor="#007934" Tapped="OpenSourceLicense_Tapped"/>
-                        <TextCell x:Name="PrivacyPolicy" Text="Dataskydd" Detail="Hantering och skydd av din data" TextColor="#007934" Tapped="PrivacyPolicy_Tapped"/>
-                        <TextCell x:Name="TermsOfService" Text="Användarvillkor" Detail="Du har godkänt dessa vid registreringen" TextColor="#007934" Tapped="TermsOfService_Tapped"/>
+                    <TableSection Title="Hjälp och tips" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}">
+                    <TextCell x:Name="FAQ" Text="Frågor och svar" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Tapped="FAQ_Tapped"/>
+                    <TextCell x:Name="ContactSupport" Text="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Tapped="ContactSupport_Tapped"/>
+                    <TextCell x:Name="RedoEntry" Text="Kör startskärmar igen" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Tapped="RedoEntry_Tapped"/>
+                    </TableSection>
+                    <TableSection Title="Information" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}">
+                        <TextCell x:Name="AboutApplication" Text="Om appen" Detail="Version X" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"  Tapped="AboutApplication_Tapped"/>
+                        <TextCell x:Name="OpenSourceLicense" Text="Licens för öppen källkod" Detail="Exempellicens" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"  Tapped="OpenSourceLicense_Tapped"/>
+                        <TextCell x:Name="PrivacyPolicy" Text="Dataskydd" Detail="Hantering och skydd av din data" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"  Tapped="PrivacyPolicy_Tapped"/>
+                        <TextCell x:Name="TermsOfService" Text="Användarvillkor" Detail="Du har godkänt dessa vid registreringen" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"  Tapped="TermsOfService_Tapped"/>
                     </TableSection>
                 </TableRoot>
             </TableView>

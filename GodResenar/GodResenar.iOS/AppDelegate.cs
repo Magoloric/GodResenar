@@ -28,6 +28,8 @@ namespace GodResenar.iOS
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             LoadApplication(new App());
+            DependencyService.Register<ToastNotification>(); 
+            ToastNotification.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             return base.FinishedLaunching(app, options);

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GodResenar.PermissionPage"
+                          Visual="Material"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
+    <ContentPage.Content>
+        <StackLayout Padding="20" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="Start" Padding="20">
+            <Label Text="Innan vi börjar..."
+                   TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
+                                       FontAttributes="Bold"
+                                       FontSize="Title"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="EndAndExpand"/>
+            <Label Text="måste vi be dig om följande tillstånd:"
+                                       FontSize="18"
+                   TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"
+                                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Grid VerticalOptions="FillAndExpand" Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="17" Text="För att du ska kunna skicka oss foto- och videomaterial, behöver appen åtkomst till kameran" Grid.Row="0" Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Padding="2"  VerticalOptions="CenterAndExpand"/>
+                <Button x:Name="CameraPermission" Text="Tillåt" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="DarkRed"  Grid.Row="0" Grid.Column="1"  Clicked="CameraPermission_Tapped" />
+                <Label FontSize="17" Text="För att du ska kunna skicka röstmeddelanden, behöver appen tillstånd att använda enhetens mikrofon" Grid.Row="1" Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Padding="2"  VerticalOptions="CenterAndExpand" />
+                <Button x:Name="MicrophonePermission" Text="Tillåt" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="DarkRed" Grid.Row="1" Grid.Column="1"  Clicked="MicrophonePermission_Tapped" />
+                <Label FontSize="17"  Text="För att du ska kunna lagra material och/eller välja ´foto eller video, behöver appen åtkomst till enhetens minne" Grid.Row="2" Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Padding="2"  VerticalOptions="CenterAndExpand"/>
+                <Button x:Name="StorageWritePermission" Text="Tillåt" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="DarkRed" Grid.Row="2" Grid.Column="1"  Clicked="StorageWritePermission_Tapped" />
+                <Label FontSize="17"  Text="För att vi ska kunna veta platsen där händelsen har rapporterats, behöver appen åtkomst åt din platsinformation, dock endast när rapporten skickas!" Grid.Row="3" Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Padding="2"  VerticalOptions="CenterAndExpand"/>
+                <Button x:Name="LocationPermission" Text="Tillåt" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" BackgroundColor="DarkRed" Grid.Row="3" Grid.Column="1"  Clicked="LocationPermission_Tapped" />
+            </Grid>
+            <StackLayout VerticalOptions="End">
+            <Button  x:Name="ContinueButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="{StaticResource PrimaryColor}" Text="Kör igång!" TextColor="{StaticResource SecondaryColor}"  Clicked="ContinueButton_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

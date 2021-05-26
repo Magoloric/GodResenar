@@ -1,9 +1,6 @@
 ﻿using GodResenar.Functions;
-using Microsoft.Identity.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +16,16 @@ namespace GodResenar
         }
         private async void LoginButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfilePage(), true);
+            //Temporary, until I write the netcode
+            UserHandler.GetUserInfo(null);
+            if (VersionTracking.IsFirstLaunchEver)
+            {
+                await Navigation.PushAsync(new PermissionPage(), true);
+            }
+            else
+            {
+                await Navigation.PushAsync(new ProfilePage(), true);
+            }
             /*
             string result;
             try

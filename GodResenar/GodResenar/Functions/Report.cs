@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace GodResenar.Functions
 {

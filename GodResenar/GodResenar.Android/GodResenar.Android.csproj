@@ -80,11 +80,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.Permissions">
-      <Version>6.0.1</Version>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.9.5.9</Version>
     </PackageReference>
     <PackageReference Include="Vapolia.XamarinFormsGesture">
-      <Version>3.2.3</Version>
+      <Version>3.3.0-preA2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Collections">
       <Version>28.0.0.3</Version>
@@ -101,8 +101,8 @@
     <PackageReference Include="Xamarin.FFImageLoading.Svg">
       <Version>2.4.11.982</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1187-pre2" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFImageLoading\Forms.cs" />
@@ -352,13 +352,7 @@
     <AndroidResource Include="Resources\drawable-v21\ic_stop_custom_48dp.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_screen.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\appicon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_check_circle_green_900_48dp.png" />
@@ -426,5 +420,16 @@
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_arrow_drop_down_black_18dp.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\appicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

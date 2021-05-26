@@ -7,24 +7,24 @@
              x:Class="GodResenar.LoginPage"
              Visual="Material"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#F4D242">
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Margin="30">
-            <Label FontAttributes="Bold" TextColor="Black" Text="Välkommen! Vänligen logga in:" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
-            <Frame BorderColor="DarkGreen" CornerRadius="30" Padding="0">
-            <Entry x:Name="UserNameField" BackgroundColor="White" Placeholder="Användarnamn"></Entry>
+            <Label FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Text="Välkommen! Vänligen logga in:" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <Frame BorderColor="{StaticResource PrimaryColor}" CornerRadius="30" Padding="0">
+                <Entry x:Name="UserNameField" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" Placeholder="Användarnamn"></Entry>
             </Frame>
-            <Frame BorderColor="DarkGreen" CornerRadius="30" Padding="0">
-                <Entry x:Name="PasswordField" BackgroundColor="White" IsPassword="True" Placeholder="Lösenord"></Entry>
+            <Frame BorderColor="{StaticResource PrimaryColor}" CornerRadius="30" Padding="0">
+                <Entry x:Name="PasswordField" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" IsPassword="True" Placeholder="Lösenord"></Entry>
             </Frame>
-            <Button  x:Name="LoginButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="#00471f" Text="Logga in" TextColor="White"  Clicked="LoginButton_Clicked" />
-            <Label FontAttributes="Bold" TextColor="Black" Text="Eller logga in med" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
-            <StackLayout Orientation="Horizontal">
+            <Button  x:Name="LoginButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="{StaticResource PrimaryColor}" Text="Logga in" TextColor="{StaticResource SecondaryColor}"  Clicked="LoginButton_Clicked" />
+            <Label FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Text="Eller logga in med" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button  x:Name="GoogleButton" Margin="10" CornerRadius="30" FontSize="16" FontAttributes="Bold" Padding="10, 5, 10, 5" BackgroundColor="LightGray" Text="Google" TextColor="Gray"  Clicked="LoginButton_Clicked" />
-                <Button  x:Name="AppleButton" Margin="10" CornerRadius="30" FontSize="16" FontAttributes="Bold" Padding="10, 5, 10, 5" BackgroundColor="Black" Text="Apple" TextColor="White"  Clicked="LoginButton_Clicked" />
+                <Button  x:Name="AppleButton" Margin="10" CornerRadius="30" FontSize="16" FontAttributes="Bold" Padding="10, 5, 10, 5" BackgroundColor="DarkGray" Text="Apple" TextColor="White"  Clicked="LoginButton_Clicked" />
             </StackLayout>
-            <Label FontAttributes="Bold" TextColor="Black" Text="Inget konto än?" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
-            <Button  x:Name="RegisterButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="#00471f" Text="Registrera" TextColor="White"  Clicked="LoginButton_Clicked" />
+            <Label FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" Text="Inget konto än?" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30"/>
+            <Button  x:Name="RegisterButton" Margin="20" CornerRadius="30" FontSize="20" FontAttributes="Bold" Padding="15, 5, 15, 5"  BackgroundColor="{StaticResource PrimaryColor}" Text="Registrera" TextColor="{StaticResource SecondaryColor}"  Clicked="LoginButton_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

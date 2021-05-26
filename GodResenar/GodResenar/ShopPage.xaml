@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="GodResenar.ShopPage"
-             Title="Poängshoppen" Visual="Material" BackgroundColor="#eee">
+             Title="Poängshoppen" Visual="Material" BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="3">
-            <Label Text="Du har 1665 poäng att spendera!" TextColor="Black" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"></Label>
+            <Label Text="{Binding Saldo, StringFormat='Du har {0} poäng att spendera!'}"  FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}"></Label>
             <CollectionView x:Name="ItemCollectionView" Margin="5">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
@@ -16,17 +16,18 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate Margin="15">
                     <DataTemplate>
-                        <Frame HasShadow="True" Padding="5"  BackgroundColor="White">
+                        <Frame HasShadow="True" Padding="5"  BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                             <StackLayout Orientation="Vertical">
                                 <Image x:Name="EntryThumb" Source="{Binding PictureSource}" HeightRequest="100" WidthRequest="100" />
                                 <FlexLayout Direction="Column">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Start" Padding="5" LineBreakMode="WordWrap" FlexLayout.Grow="3" WidthRequest="200"/>
-                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14"></Label>
+                                    <Label Text="{Binding Name}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Start" Padding="5" LineBreakMode="WordWrap" FlexLayout.Grow="3" WidthRequest="200"/>
+                                    <Label Text="{Binding Description}" TextColor="{AppThemeBinding Light={StaticResource NormalTextColor}, Dark={StaticResource DarkTextColor}}" FontSize="14"></Label>
                                 </FlexLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Price, StringFormat='{0} Poäng'}" HorizontalOptions="StartAndExpand" Margin="1"
-                                TextColor="#007934" VerticalTextAlignment="Center"/>
-                                    <Button x:Name="BuyButton" Text="KÖP" Clicked="BuyButton_Clicked" BackgroundColor="#007934" CornerRadius="35" IsEnabled="{Binding Availability}"></Button>
+                                TextColor="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource SecondaryColor}}" VerticalTextAlignment="Center"/>
+                                    <Button x:Name="BuyButton" Text="KÖP"
+                                            Clicked="BuyButton_Clicked" BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource SecondaryColor}" CornerRadius="35"></Button>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>

@@ -1,9 +1,6 @@
 ﻿
 using GodResenar.Functions;
-using Java.Util.Jar;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

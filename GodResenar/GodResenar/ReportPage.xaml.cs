@@ -20,75 +20,99 @@ namespace GodResenar
 
         private async void takePhoto_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.TakePhoto();
-            if (success == false)
+            int response = await camera.TakePhoto();
+            switch (response)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
-            }
-            else
-            {
-                imagePreview.Source = camera.Preview.Source;
-                imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
-                SwitchButtons();
+                case -1:
+                    {
+                        await DisplayAlert("Oj!", camera.Error, "OK");
+                        break;
+                    }
+                case 0:
+                    //Implies that user canceled the process
+                    break;
+                case 1:
+                    {
+                        imagePreview.Source = camera.Preview.Source;
+                        imagePreview.IsVisible = true;
+                        imagePlaceholder.IsVisible = false;
+                        ToStepTwo();
+                        break;
+                    }
+
             }
         }
 
         private async void takeVideo_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.PickPhoto();
-            if (success == false)
+            int response = await camera.TakeVideo();
+            switch (response)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
+                case -1:
+                    {
+                        await DisplayAlert("Oj!", camera.Error, "OK");
+                        break;
+                    }
+                case 0:
+                    //Implies that user canceled the process
+                    break;
+                case 1:
+                    {
+                        videoPreview.Source = camera.VideoPreview.Source;
+                        imagePlaceholder.IsVisible = false;
+                        videoPreview.IsVisible = true;
+                        ToStepTwo();
+                        break;
+                    }
             }
-            else
-            {
-                imagePreview.Source = camera.Preview.Source;
-                imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
-                SwitchButtons();
-            }
         }
-        void SwitchButtons()
-        {
-            PhotoButtons.IsVisible = false;
-            DescriptionButtons.IsVisible = true;
-        }
-        void SwitchButtonsBack()
-        {
-            DescriptionButtons.IsVisible = false;
-            PhotoButtons.IsVisible = true;
-        }
+
 
         private async void pickPhoto_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.TakeVideo();
-            if (success == false)
+            int response = await camera.PickPhoto();
+            switch (response)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
-            }
-            else
-            {
-                imagePreview.Source = camera.Preview.Source;
-                imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
-                SwitchButtons();
+                case -1:
+                    {
+                        await DisplayAlert("Oj!", camera.Error, "OK");
+                        break;
+                    }
+                case 0:
+                    //Implies that user canceled the process
+                    break;
+                case 1:
+                    {
+                        imagePreview.Source = camera.Preview.Source;
+                        imagePlaceholder.IsVisible = false;
+                        imagePreview.IsVisible = true;
+                        ToStepTwo();
+                        break;
+                    }
             }
         }
 
         private async void pickVideo_Clicked(object sender, System.EventArgs e)
         {
-            bool success = await camera.PickVideo();
-            if (success == false)
+            int response = await camera.PickVideo();
+            switch (response)
             {
-                await DisplayAlert("Alert", camera.Error, "OK");
-            }
-            else
-            {
-                imagePreview.Source = camera.Preview.Source;
-                imagePlaceholder.IsVisible = false;
-                imagePreview.IsVisible = true;
-                SwitchButtons();
+                case -1:
+                    {
+                        await DisplayAlert("Oj!", camera.Error, "OK");
+                        break;
+                    }
+                case 0:
+                    //Implies that user canceled the process
+                    break;
+                case 1:
+                    {
+                        videoPreview.Source = camera.VideoPreview.Source;
+                        imagePlaceholder.IsVisible = false;
+                        videoPreview.IsVisible = true;
+                        ToStepTwo();
+                        break;
+                    }
             }
         }
 
@@ -131,20 +155,53 @@ namespace GodResenar
             }
         }
 
-        private void retakePhoto_Clicked(object sender, System.EventArgs e)
+        private async void sendReport_Clicked(object sender, System.EventArgs e)
+        {
+            /*await reporter.SendReport(report);*/
+            bool success = reporter.SendReport();
+
+            if (success)
+            {
+                await Navigation.PushAsync(new ReportSentPage(), true);
+            }
+            else
+            {
+                await DisplayAlert("Oj då!", "Kunde inte skicka rapporten. Vänligen försök igen senare", "OK");
+            }
+
+        }
+
+        private void moreInfoButton_Clicked(object sender, System.EventArgs e)
+        {
+            ToStepThree();
+        }
+        private void cancelButton_Clicked(object sender, System.EventArgs e)
         {
             camera.RemovePreview();
             imagePlaceholder.IsVisible = true;
             imagePreview.IsVisible = false;
+            videoPreview.IsVisible = false;
             MessageField.Text = "";
             recorder.RemoveMessage();
-            SwitchButtonsBack();
+            ToStepOne();
         }
 
-        private async void sendReport_Clicked(object sender, System.EventArgs e)
+        internal void ToStepOne()
         {
-            /*await reporter.SendReport(report);*/
-            await Navigation.PushAsync(new ReportSentPage(), true);
+            StepTwo.IsVisible = false;
+            StepThree.IsVisible = false;
+            StepOne.IsVisible = true;
         }
+        internal void ToStepTwo()
+        {
+            StepOne.IsVisible = false;
+            StepTwo.IsVisible = true;
+        }
+        internal void ToStepThree()
+        {
+            StepTwo.IsVisible = false;
+            StepThree.IsVisible = true;
+        }
+
     }
 }

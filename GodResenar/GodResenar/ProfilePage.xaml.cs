@@ -1,27 +1,16 @@
 ﻿
 using GodResenar.Functions;
-using Org.Apache.Http.Authentication;
 using System;
 using System.ComponentModel;
-using System.Linq;
 using Xamarin.Forms;
-using UltimateXF.Widget.Charts.Models.Formatters;
-using UltimateXF.Widget.Charts.Models.PieChart;
-using System.Collections.Generic;
-using Android.App.Job;
+using Microcharts;
+using SkiaSharp;
 
 namespace GodResenar
 {
 
     [DesignTimeVisible(false)]
 
-    public class CustomPercentDataSetValueFormatter : IDataSetValueFormatter
-    {
-        public string GetFormattedValue(float value, int dataSetIndex)
-        {
-            return value.ToString();
-        }
-    }
     public partial class ProfilePage : ContentPage
     {
         string userName = User.UserName;
@@ -58,15 +47,16 @@ namespace GodResenar
                 nrOfReports = 57;
                 saldo = 1665;
                 levelProgress = 0.23f;
-                currentLevel = 2;
+                currentLevel = 6;
             }
             else
             {
-                LevelProgress = (float)System.Math.Round(LevelProgress, 1);
+                LevelProgress = (float)Math.Round(LevelProgress, 1);
             }
         InitializeComponent();
             initDiagrams();
             setLevelColor();
+            InitAnimations();
         }
         protected override bool OnBackButtonPressed()
         {
@@ -130,36 +120,56 @@ namespace GodResenar
         public void initDiagrams()
         {
 
-            var entries = new List<PieEntry>();
-
-
-            entries.Add(new PieEntry(nrOfAcceptedReports, "Accepterade"));
-            entries.Add(new PieEntry(nrOfReports - (int)nrOfAcceptedReports, "Övriga"));
-
-            var dataSet = new PieDataSet(entries, "")
+            var entries = new[]
             {
-                Colors = new List<Color>()
+                new ChartEntry(NrOfReports)
                 {
-                    Color.DarkGreen, Color.LightGreen
+                    Label = "Övriga",
+                    ValueLabel = NrOfReports.ToString(),
+                    Color = SKColor.Parse("#EDE456"),
+                    TextColor = SKColor.Parse("#EDE456"),
+                    ValueLabelColor = SKColor.Parse("#EDE456")
                 },
-                ValueFormatter = new CustomPercentDataSetValueFormatter(),
-                SliceSpace = 25f,
-                ValueTextSize = 25,
-                HighlightEnabled = true,
-                ValueColors = new List<Color>()
+                new ChartEntry(NrOfAcceptedReports)
                 {
-                    Color.White, Color.Black
+                    Label = "Accepterade",
+                    ValueLabel = NrOfAcceptedReports.ToString(),
+                    Color = SKColor.Parse("#529262"),
+                    TextColor = SKColor.Parse("#529262"),
+                    ValueLabelColor = SKColor.Parse("#529262")
                 }
             };
+            var chart = new DonutChart { Entries = entries };
+            chartView.Chart = chart;
+            chart.BackgroundColor = SKColor.Empty;
+            chart.LabelTextSize = 40;
+            chart.LabelColor = SKColors.White;
+            chart.LabelMode = LabelMode.RightOnly;
+        }
+        internal void InitAnimations()
+        {
+            NewReportButton.IsVisible = true;
+            FlowButton.IsVisible = true;
+            SettingsButton.IsVisible = true;
 
-            var statistics = new PieChartData(dataSet);
-            ReportStats.ChartData = statistics;
-            ReportStats.DrawCenterText = true;
-            ReportStats.CenterTextRadiusPercent = 100;
-            ReportStats.CenterText = NrOfReports.ToString();
-            ReportStats.DrawEntryLabels = false;
+            new Animation {
 
-
+              //User info
+              { 0, 0.6, new Animation (v => UserInfo.TranslationY = v, -400, 0) },
+              //Shop & saldo
+                          { 0, 0.6, new Animation (v => ShopAndSaldo.TranslationY = v, -400, 0) },
+            //Bottom buttons
+              //Report button
+             { 0, 0.4, new Animation (v => NewReportButton.TranslationY = v, 400, -20) },
+              { 0.4, 0.8, new Animation (v => NewReportButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) },
+              //Feed button
+                { 0, 0.5, new Animation (v => FlowButton.TranslationY = v, 400, -20) },
+              { 0.5, 1, new Animation (v => FlowButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) },
+              //Settings button
+              { 0, 0.5, new Animation (v => SettingsButton.TranslationY = v, 400, -20) },
+              { 0.5, 1, new Animation (v => SettingsButton.TranslationY = v, -20, 0, easing: Easing.BounceOut) }
+            }
+            .Commit(this, "FlowButton", length: 1500, repeat: () => false);
         }
     }
 }
